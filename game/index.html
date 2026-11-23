@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a card battle of four elements</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">🔥 EMBER DUEL ⚡</div>
+    <div class="topinfo">
+      <span id="turnLabel">Duel 1</span>
+      <span id="scoreLabel">Score 0 · Wins 0 · Losses 0</span>
+      <button id="soundBtn" title="Toggle sound (M)">🔊</button>
+      <button id="helpBtn" title="How to play">?</button>
+    </div>
+  </header>
+
+  <!-- Opponent -->
+  <section id="foeZone" class="zone">
+    <div class="fighter foe">
+      <div class="avatar foe-av">❄️</div>
+      <div class="fighter-info">
+        <div class="fighter-name">ROOK · Frost Warden</div>
+        <div class="hpbar"><div id="foeHpFill" class="hpfill foe"></div><span id="foeHpText" class="hptext">30 / 30</span></div>
+        <div class="substats"><span id="foeShield">🛡 0</span> · <span id="foeMana">◆ 0</span> · <span id="foeDeck">Deck 21</span></div>
+      </div>
+    </div>
+    <div id="foeHand" class="hand foe-hand" aria-label="Opponent hand"></div>
+  </section>
+
+  <!-- Table -->
+  <section id="table">
+    <div id="playedArea">
+      <div id="lastPlayed" class="played-slot"><span class="played-hint">No card played yet — play a card to strike!</span></div>
+    </div>
+    <div id="log" aria-live="polite"></div>
+  </section>
+
+  <!-- Player -->
+  <section id="youZone" class="zone">
+    <div id="yourHand" class="hand your-hand" aria-label="Your hand"></div>
+    <div class="fighter you">
+      <div class="avatar you-av">🔥</div>
+      <div class="fighter-info">
+        <div class="fighter-name">ASHA · Ember Mage <span class="you-tag">YOU</span></div>
+        <div class="hpbar"><div id="youHpFill" class="hpfill you"></div><span id="youHpText" class="hptext">30 / 30</span></div>
+        <div class="substats"><span id="youShield">🛡 0</span> · <span id="youMana">◆ 0</span> · <span id="youDeck">Deck 21</span></div>
+      </div>
+      <button id="endTurnBtn">END TURN ⏎</button>
+    </div>
+  </section>
+
+  <div id="hint">Click a card (or press 1–7) to play it · End Turn (Space) when done</div>
+
+  <!-- Title overlay -->
+  <div id="titleScreen" class="overlay">
+    <div class="panel title-panel">
+      <div class="title-embers">🔥 ❄️ 🍃 ⚡</div>
+      <h1>EMBER DUEL</h1>
+      <p class="tagline">A duel of four elements. Outwit Rook, the Frost Warden, before he freezes your last ember.</p>
+      <div class="rules">
+        <p>⚔️ <b>Reduce Rook to 0 HP to win.</b> Both duelists start at 30 HP.</p>
+        <p>◆ <b>Mana grows each turn</b> (1, then 2, up to 10) and refills at the start of your turn.</p>
+        <p>🃏 <b>Cards cost mana.</b> Fire burns, Frost shields, Leaf heals, Storm draws and strikes.</p>
+        <p>🖱️ <b>Click a card</b> or press <b>1–7</b> to play it. <b>Space</b> ends your turn.</p>
+      </div>
+      <button id="startBtn" class="big-btn">▶ &nbsp;START DUEL</button>
+      <p class="credit">An original card game · plays fully offline · no account, no network</p>
+    </div>
+  </div>
+
+  <!-- End overlay -->
+  <div id="endScreen" class="overlay hidden">
+    <div class="panel end-panel">
+      <div id="endEmoji" class="end-emoji">🏆</div>
+      <h1 id="endTitle">VICTORY!</h1>
+      <p id="endText"></p>
+      <p id="endScore" class="end-score"></p>
+      <button id="againBtn" class="big-btn">↻ &nbsp;DUEL AGAIN (R)</button>
+      <button id="menuBtn" class="ghost-btn">Back to title</button>
+    </div>
+  </div>
+
+  <p id="status" role="status" aria-live="polite" class="sr-only"></p>
+</div>
+<script src="./game.js"></script>
+</body>
+</html>
